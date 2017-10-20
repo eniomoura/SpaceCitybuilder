@@ -54,29 +54,36 @@ public class BuildingBehaviour: MonoBehaviour {
 			foreach (MeshRenderer m in GetComponentsInChildren<MeshRenderer>()) {
 				m.material = highlight;
 			}
-			if (Input.GetMouseButtonUp(0)&&!justBuilt&&!this.Equals(holdsTooltip)&&!PlaceBuilding.bulldozeMode) {
+			if (Input.GetMouseButtonUp(0)&&!justBuilt&&!PlaceBuilding.bulldozeMode) {
 				ShowInfoTooltip();
 			}
 		}
 	}
 
 	public void ShowInfoTooltip() {
-		HideInfoTooltip();
-		int tLines = 1;
-		string info;
-		info = "<b>" + label + "</b>\n";
-		if (pop != 0) { info += "População: " + pop + "\n"; tLines++; }
-		if (powSpent != 0) { info += "Energia gasta: " + powSpent + "Gj\n"; tLines++; }
-		if (powProd != 0) { info += "Energia prod.: " + powProd + "Gj\n"; tLines++; }
-		if (prod != 0) { info += "Produtividade: " + prod + "\n"; tLines++; }
-		if (metalInput != 0) { info += "Metal gasto: " + metalInput + "/s\n"; tLines++; }
-		if (metalOutput != 0) { info += "Metal minado: " + metalOutput + "/s\n"; tLines++; }
-		if (maintenance != 0) { info += "Manutenção: " + maintenance + "$/s\n"; tLines++; }
-		tooltipPanel.GetComponentInChildren<Text>().text = info;
-		DisplayTooltipActions();
-		holdsTooltip = this;
-		tooltipPanel.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (tLines * 20) + (actions.Length*35) + 5);
-		tooltipPanel.SetActive(true);
+		UnityEngine.EventSystems.EventSystem uiManager = GameObject.Find("EventSystem").GetComponent<UnityEngine.EventSystems.EventSystem>();
+		if (!uiManager.IsPointerOverGameObject()) {
+			if (this.Equals(holdsTooltip)) {
+				HideInfoTooltip();
+			} else {
+				HideInfoTooltip();
+				int tLines = 1;
+				string info;
+				info = "<b>" + label + "</b>\n";
+				if (pop != 0) { info += "População: " + pop + "\n"; tLines++; }
+				if (powSpent != 0) { info += "Energia gasta: " + powSpent + "Gj\n"; tLines++; }
+				if (powProd != 0) { info += "Energia prod.: " + powProd + "Gj\n"; tLines++; }
+				if (prod != 0) { info += "Produtividade: " + prod + "\n"; tLines++; }
+				if (metalInput != 0) { info += "Metal gasto: " + metalInput + "/s\n"; tLines++; }
+				if (metalOutput != 0) { info += "Metal minado: " + metalOutput + "/s\n"; tLines++; }
+				if (maintenance != 0) { info += "Manutenção: " + maintenance + "$/s\n"; tLines++; }
+				tooltipPanel.GetComponentInChildren<Text>().text = info;
+				DisplayTooltipActions();
+				holdsTooltip = this;
+				tooltipPanel.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (tLines * 20) + (actions.Length * 35) + 5);
+				tooltipPanel.SetActive(true);
+			}
+		}
 	}
 
 	public void DisplayTooltipActions() {

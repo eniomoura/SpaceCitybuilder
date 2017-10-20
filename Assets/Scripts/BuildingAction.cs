@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuildingAction : MonoBehaviour {
 	public void LaunchShip() { //placeholder
-		PlanetStats stats = Camera.main.GetComponent<CameraOrbit>().GetTargetPlanet().GetComponent<PlanetStats>();
+		PlanetStats stats = Camera.main.GetComponent<CameraOrbit>().targetPlanet.GetComponent<PlanetStats>();
 		if (stats.money > 10000) {
 			stats.ships++;
 			stats.money -= 10000;

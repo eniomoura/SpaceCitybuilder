@@ -9,8 +9,10 @@ public class PlanetOrbit : MonoBehaviour {
 	//Variáveis do editor
     [SerializeField] GameObject parentBody;
 	[SerializeField] bool tidallyLocked;
+	[SerializeField] UnityEngine.UI.Text tooltip; //Tooltip do planeta realçado
 
 	//Variáveis internas
+	Behaviour halo; //Realça um planeta distante sob o mouse
 	PlanetStats stats;
 	float orbitDistance;
 
@@ -18,6 +20,7 @@ public class PlanetOrbit : MonoBehaviour {
     void Start() {
 		//Inicializações
         stats = GetComponent<PlanetStats>();
+		halo = (Behaviour)GetComponent("Halo");
 		orbitDistance = (transform.position - parentBody.transform.position).magnitude;
 	}
 
@@ -36,5 +39,30 @@ public class PlanetOrbit : MonoBehaviour {
 		if (tidallyLocked) {
 			transform.LookAt(parentBody.transform.position);
 		}
+
+		//Limpa halos
+		if (halo.enabled || tooltip.enabled) {
+			if (Camera.main.GetComponent<CameraOrbit>().leavingPlanet==0) {
+				halo.enabled = false;
+				tooltip.enabled = false;
+			}
+		}
+	}
+
+	void OnMouseOver() {
+		if (transform != Camera.main.transform.parent) { //Quando o mouse está sobre um planeta distante
+			halo.enabled = true;
+			tooltip.text = GetComponent<PlanetStats>().planetName;
+			tooltip.transform.position = new Vector2(Input.mousePosition.x + 10, Input.mousePosition.y);
+			tooltip.enabled = true;
+			if (GameData.get.DoubleClick()) {
+				Camera.main.GetComponent<CameraOrbit>().Target(gameObject);
+			}
+		}
+	}
+
+	private void OnMouseExit() {
+		halo.enabled = false;
+		tooltip.enabled = false;
 	}
 }

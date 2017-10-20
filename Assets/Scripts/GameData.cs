@@ -12,7 +12,7 @@ public class GameData : MonoBehaviour {
 	[SerializeField] GameObject exitMenu;
 
 	//Variáveis de sistemas
-	public int gameSpeed;
+	public float gameSpeed;
 	public float doubleClickSpeed;
 	public float lastLeftClick;
 	public Material highlight;
@@ -21,7 +21,7 @@ public class GameData : MonoBehaviour {
 	public static GameData get;
 
 	//Atributos internos
-	private int previousSpeed=0; //velocidade do jogo antes de pausar
+	private float previousSpeed=0; //velocidade do jogo antes de pausar
 
 	void Start () {
 		//Inicializações

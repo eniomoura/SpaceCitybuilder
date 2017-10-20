@@ -8,8 +8,8 @@ using UnityEngine;
 public class PlanetStats: MonoBehaviour {
 
 	//Identificação do planeta
-	public string statBar;
 	public string planetName;
+	public UnityEngine.UI.Text statDisplay;
 	public List <BuildingBehaviour> buildings; //Em algum ponto, pode ser útil usar essa lista para recalcular valores.
 	public GameObject nextPlanet;
 	public GameObject prevPlanet;
@@ -37,7 +37,7 @@ public class PlanetStats: MonoBehaviour {
 	public float maintenance;
 
 	//Valores Internos
-	[SerializeField] UnityEngine.UI.Text statDisplay;
+	private string statBar;
 	private float lackMoneyTimer;
 
 	void Awake() {
@@ -104,8 +104,12 @@ public class PlanetStats: MonoBehaviour {
 			energySpent += req.powSpent;
 			prod += req.prod;
 			metalPorS += req.metalOutput;
-			maintenance += req.maintenance;
 			req.TurnOn();
+			if (overCapacity) {
+				maintenance += req.maintenance * 2;
+			} else {
+				maintenance += req.maintenance;
+			}
 			buildings.Add(req);
 		}
 		return !cantBuild;
@@ -113,12 +117,16 @@ public class PlanetStats: MonoBehaviour {
 
 	public void RemoveBuilding(GameObject building) {
 		BuildingBehaviour req = building.GetComponent<BuildingBehaviour>();
+		if (overCapacity) {
+			maintenance -= req.maintenance * 2;
+		} else {
+			maintenance -= req.maintenance;
+		}
 		population -= req.pop;
 		energyProduced -= req.powProd;
 		energySpent -= req.powSpent;
 		prod -= req.prod;
 		metalPorS -= req.metalOutput;
-		maintenance -= req.maintenance;
 		metalPorS += req.metalInput;
 		buildings.Remove(req);
 	}
