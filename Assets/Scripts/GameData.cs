@@ -7,16 +7,15 @@ using UnityEngine;
  *	que servem como base para outras mecânicas do jogo.						*/
 public class GameData : MonoBehaviour {
 
-	//GameObjects de sistemas
-	[SerializeField] UnityEngine.UI.Text timeIndicator;
-	[SerializeField] GameObject exitMenu;
-
 	//Variáveis de sistemas
 	public float gameSpeed;
 	public float doubleClickSpeed;
 	public float lastLeftClick;
+	public Mesh[] meshLibrary;
 	public Material highlight;
-	
+	public UnityEngine.UI.Text timeIndicator;
+	public GameObject exitMenu;
+
 	//Acessadores
 	public static GameData get;
 
@@ -30,6 +29,9 @@ public class GameData : MonoBehaviour {
 		doubleClickSpeed = 0.5f;
 		BuildingBehaviour.highlight = this.highlight;
 		BuildingBehaviour.highlight.SetColor("_EmissionColor", Color.cyan);
+		timeIndicator = GameObject.Find("TimeIndicator").GetComponent<UnityEngine.UI.Text>();
+		timeIndicator.color = Color.green;
+		timeIndicator.text = "x" + gameSpeed;
 	}
 
 	void Update () {
@@ -75,16 +77,11 @@ public class GameData : MonoBehaviour {
 			previousSpeed = gameSpeed;
 			gameSpeed = 0;
 			timeIndicator.color = Color.red;
-			timeIndicator.text = "||";
-			timeIndicator.enabled = true;
+			timeIndicator.text = "ll";
 		} else { //Restaura o indicador de velocidade
 			gameSpeed = previousSpeed;
-			if (gameSpeed == 1) {
-				timeIndicator.enabled = false;
-			} else {
-				timeIndicator.color = Color.green;
-				timeIndicator.text = "x" + gameSpeed;
-			}
+			timeIndicator.color = Color.green;
+			timeIndicator.text = "x" + gameSpeed;
 		}
 	}
 
@@ -95,9 +92,6 @@ public class GameData : MonoBehaviour {
 		if (gameSpeed > 1) {
 			timeIndicator.color = Color.green;
 			timeIndicator.text = "x" + gameSpeed;
-			timeIndicator.enabled = true;
-		} else {
-			timeIndicator.enabled = false;
 		}
 	}
 
@@ -106,10 +100,6 @@ public class GameData : MonoBehaviour {
 			gameSpeed--;
 			timeIndicator.color = Color.green;
 			timeIndicator.text = "x" + gameSpeed;
-			timeIndicator.enabled = true;
-		}
-		if (gameSpeed==1){
-			timeIndicator.enabled = false;
 		}
 	}
 
