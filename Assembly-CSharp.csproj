@@ -38,13 +38,16 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\SolarSystem\PlanetStats.cs" />
      <Compile Include="Assets\Scripts\SolarSystem\PlanetOrbit.cs" />
+     <Compile Include="Assets\Scripts\ToggleMode.cs" />
      <Compile Include="Assets\Scripts\SolarSystem\CameraOrbit.cs" />
      <Compile Include="Assets\Scripts\SolarSystem\CostTooltip.cs" />
      <Compile Include="Assets\Scripts\SolarSystem\BuildingBehaviour.cs" />
      <Compile Include="Assets\Scripts\GameData.cs" />
      <Compile Include="Assets\Scripts\SolarSystem\PlaceBuilding.cs" />
      <Compile Include="Assets\Scripts\SolarSystem\BuildingAction.cs" />
-     <Compile Include="Assets\Scripts\ToggleMode.cs" />
+     <Compile Include="Assets\Stagit\SkyboxEarthPlanets\script\skyboxspace_mouselook_v1.cs" />
+     <Compile Include="Assets\Stagit\SkyboxEarthPlanets\script\skyboxspace_demo_v1.cs" />
+     <Compile Include="Assets\Scripts\ShipEnvironment\ShipMovement.cs" />
     <Reference Include="UnityEngine">
         <HintPath>E:/Program Files/2020.1.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -233,6 +236,15 @@
     </Reference>
     <Reference Include="UnityEditor">
         <HintPath>E:/Program Files/2020.1.17f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Editor">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/PackageCache/com.unity.analytics@3.5.3/Unity.Analytics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Tracker">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/PackageCache/com.unity.analytics@3.5.3/Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.StandardEvents">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/PackageCache/com.unity.analytics@3.5.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
         <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
@@ -585,8 +597,20 @@
     <Reference Include="Unity.Timeline.Editor">
         <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Monetization">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
         <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/UnityEngine.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
         <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -597,14 +621,41 @@
     <Reference Include="Unity.Timeline">
         <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.XR.LegacyInputHelpers">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Rider.Editor">
         <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Analytics">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.SpatialTracking">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
         <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements.Editor">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
         <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.XR.LegacyInputHelpers">
+        <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>E:/Users/Enio/Documents/SpaceCitybuilder/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

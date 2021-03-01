@@ -117,7 +117,7 @@ public class BuildingBehaviour : MonoBehaviour {
 	}
 
 	public void Update () {
-		if (this.Equals (holdsTooltip) && !Input.GetMouseButton (0)) {
+		if (this.Equals (holdsTooltip) && !Input.GetMouseButton (0) && Camera.main) {
 			tooltipPanel.transform.position = Camera.main.WorldToScreenPoint (transform.position);
 		}
 		if (Input.GetMouseButton (0) && !uiManager.IsPointerOverGameObject ()) {
